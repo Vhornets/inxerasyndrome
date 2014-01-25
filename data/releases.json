@@ -1,0 +1,179 @@
+{
+	"releases": [
+		{
+			"id": 0,
+
+			"project": "Gefradah",
+
+			"title": "Medusa EP",
+
+			"year": 2013,
+
+			"duration": 26.04,
+
+			"tracklist": [
+				"Medusa",
+				"Lamia",
+				"Lilith",
+				"Enchained (edit)",
+				"Morana",
+				"Cancertid (Lifelover cover)"
+			],
+
+			"img": ["medusa-cover.png", "medusa-cover-back.png"],
+
+			"name": "medusa",
+
+			"links": {
+				"mp3": "https://ia600901.us.archive.org/2/items/GefradahMedusaEP2013Mp3/Gefradah%20-%20Medusa%20EP%20%282013%29%20mp3.rar",
+				"flac": "https://ia600900.us.archive.org/21/items/GefradahMedusaEP2013FLAC/Gefradah%20-%20Medusa%20EP%20%282013%29%20FLAC.rar"
+			},
+
+			"soundcloudPlaylist": "7632875",
+
+			"bandcampPlaylist": "528826768"
+		},
+		{
+			"id": 1,
+
+			"project": "Gefradah",
+
+			"title": "Unseen Prisoner EP",
+
+			"year": 2013,
+
+			"duration": 26.24,
+
+			"tracklist": [
+				"Lurid Toy",
+				"Rave In Fog ",
+				"G6",
+				"Unseen Prisoner",
+				"Unexpected Intro",
+				"Human Parser"
+			],
+
+			"img": ["up-cover.jpg", "up-cover-back.jpg"],
+
+			"name": "unseen-prisoner",
+
+			"links": {
+				"mp3": "https://archive.org/download/GefradahUnseenPrisonerEP2013Mp3/Gefradah%20-%20Unseen%20Prisoner%20EP%20%282013%29%20mp3.rar",
+				"flac": "https://ia601704.us.archive.org/31/items/GefradahUnseenPrisonerEP2013FLAC/Gefradah%20-%20Unseen%20Prisoner%20EP%20%282013%29%20FLAC.rar"
+			},
+
+			"soundcloudPlaylist": "3097533",
+
+			"bandcampPlaylist": "2307475141"
+		},
+		{
+			"id": 2,
+
+			"project": "Inxera Syndrome",
+
+			"title": "Last From Red Side EP",
+
+			"year": 2012,
+
+			"duration": 27.27,
+
+			"tracklist": [
+				"Anvil Of Deformity",
+				"Pretty Bad Place To Live",
+				"It's bad for ya",
+				"Last From Red Side",
+				"52",
+				"Wormhead (deadEnd mix by Dirty Bird 13)",
+				"Wormhead (FleshState remix)"
+			],
+
+			"img": ["lfrs-cover.jpg"],
+
+			"name": "last-from-red-side",
+
+			"links": {
+				"mp3": "https://ia601701.us.archive.org/18/items/InxeraSyndromeLastFromRedSideEP2012/Inxera%20Syndrome%20-%20Last%20From%20Red%20Side%20%5bEP%5d%202012.rar",
+				"flac": "https://ia601701.us.archive.org/18/items/InxeraSyndromeLastFromRedSideEP2012/Inxera%20Syndrome%20-%20Last%20From%20Red%20Side%20%5bEP%5d%202012.rar"
+			},
+
+			"soundcloudPlaylist": "1580152"
+		},
+		{
+			"id": 3,
+
+			"project": "Inxera Syndrome",
+
+			"title": "Odd-Man-Hypothesis",
+
+			"year": 2013,
+
+			"duration": 53.29,
+
+			"tracklist": [
+				"7xN Billion Problems",
+				"Return Void",
+				"Where Is My Human Being",
+				"Reversed Summer",
+				"Odd-Man Hypothesis",
+				"Wake up, baby Doe (Album Version)",
+				"Observer",
+				"Eat Vegans",
+				"Khome Party",
+				"Vessel-Absorber",
+				"Splash",
+				"I Wish I Could Be Empty (Album Version)"
+			],
+
+			"img": ["omh-cover.jpg", "omh-cover-back.jpg"],
+
+			"name": "odd-man-hypothesis",
+
+			"links": {
+				"mp3": "https://ia801604.us.archive.org/14/items/sm010-inxera-syndrome-odd-man-hypothesis-2013-mp3/sm010-inxera-syndrome-odd-man-hypothesis-2013-mp3.rar",
+				"flac": "https://ia601609.us.archive.org/35/items/sm010-inxera-syndrome-odd-man-hypothesis-2013-flac/sm010-inxera-syndrome-odd-man-hypothesis-2013-flac.rar"
+			},
+
+			"soundcloudPlaylist": "1580152"
+		},
+		{
+			"id": 4,
+
+			"project": "Segentot",
+
+			"title": "Halodevourer",
+
+			"year": 2013,
+
+			"duration": 55.18,
+
+			"tracklist": [
+				"Abgrund",
+				"[49][54][88]",
+				"Amphithymia",
+				"Interception",
+				"Halodevourer",
+				"There's No Dubstep In The Album, Seriously",
+				"Keres-0",
+				"Ongoing Cycle",
+				"Slender Man",
+				"Moving Machinery",
+				"Mothership",
+				"Leech",
+				"Superbia",
+				"Amphithymia (Bleak Freak RMX)",
+				"Amphithymia (enDDay RMX)"
+			],
+
+			"img": ["halodevourer-cover.jpg", "halodevourer-cover-back.jpg"],
+
+			"name": "halodevourer",
+
+			"links": {
+				"mp3": "https://ia601506.us.archive.org/29/items/sm009-segentot-halodevourer-2012-mp3/sm009-segentot-halodevourer-2012-mp3.rar",
+				"flac": "https://ia601507.us.archive.org/12/items/sm009-segentot-halodevourer-2012-flac/sm009-segentot-halodevourer-2012-flac.rar"
+			},
+
+			"soundcloudPlaylist": "1580196"
+		}
+	]
+}

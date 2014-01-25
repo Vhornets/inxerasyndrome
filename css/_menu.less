@@ -1,0 +1,63 @@
+.menu(@link_color: #000, @underline: none) {
+	list-style: none;
+	padding-left: 0;
+	overflow: visible;
+
+	.active {
+		background-color: lighten(@link_color, 50%);
+
+		& > a {
+			color: lighten(@link_color, 30%);
+		}
+	}
+
+	li {
+		float: left;
+		width: 150px;
+		height: 40px;
+		text-align: center;
+
+		&:hover {
+			background-color: lighten(@link_color, 20%);
+		}
+
+		&:hover > ul {
+			visibility: visible;
+		}
+
+		a {
+			font-weight: 500;
+			width: 100%;
+			height: 100%;
+			color: @link_color;
+			display: block;
+			padding-top: 10px;
+			text-decoration: @underline;
+
+			&:hover {
+				color: lighten(@link_color, 40%);
+			}
+		}
+
+		ul {
+			z-index: 282;
+			visibility: hidden;
+			list-style: none;
+			padding-left: 0;
+			position: relative;
+			width: 150px;
+
+			li {
+				text-align: left;
+				height: 35px;
+				width: 250px;
+				background-color: #fff;
+				a {
+					color: @link_color;
+					padding-left: 30px;
+					padding-top: 8px;
+				}
+			}
+		}
+	}
+}
