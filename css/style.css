@@ -249,8 +249,21 @@ ol {
 .content .compact-view .tracklist {
   font-size: 10px;
 }
-.content .compact-view .bandcamp {
+.content .compact-view .player {
   padding-top: 13px;
+}
+.content .compact-view .icon-play {
+  font-size: 84px;
+  padding-top: 30px;
+  color: #fff;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+.content .compact-view .icon-play:hover {
+  text-decoration: none;
+  color: #333;
 }
 .content .large-view {
   display: none;
@@ -320,18 +333,6 @@ ol {
 .content .socials img {
   width: 30px;
 }
-.content .modal-title {
-  color: #000;
-}
-.content .modal-content {
-  border-radius: 0;
-}
-.content .modal-header {
-  border-bottom: 0;
-}
-.content .modal-dialog {
-  width: 800px;
-}
 .content .btn-download {
   background-color: #333333;
   border-top: solid 1px #111111;
@@ -368,6 +369,18 @@ ol {
 }
 .content .dropdown-menu .divider {
   margin: 0;
+}
+.modal-title {
+  color: #000;
+}
+.modal-content {
+  border-radius: 0;
+}
+.modal-header {
+  border-bottom: 0;
+}
+.modal-dialog {
+  width: 700px;
 }
 #release-full {
   margin-top: 10px;

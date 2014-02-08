@@ -11,31 +11,18 @@ require.config({
 		collections:	'./collections',
 		models:			'./models',
 		views:			'./views'
+	},
+
+	shim: {
+		bootstrap: {
+			deps: ['jquery']
+		}
 	}
 });
 
-define([
-	'jquery',
-	'utils/cookies',
-	'./router'
-],
+define (require, exports, module) ->
+	$ 			= require('jquery')
+	Router 		= require('./router')
+	bootstrap 	= require('bootstrap')
 
-($, cookies, Router) ->
 	router = new Router()
-	
-	$(document).on 'hide.bs.modal', '#myModal', (e) ->
-		if window.history.length > 2
-			window.history.back() 
-		else
-			window.history.pushState({main: 'main'}, "Main Page", "/")
-			window.history.go(0)
-
-	$('.content')
-		.on 'view:ready', (e) ->
-			$('#loader').hide('slow')
-			$(cookies.get('cur-view-hide')).hide()
-			$(cookies.get('cur-view-show')).show()
-		.on 'page:active', (e, num) ->
-			$('.page-num-'+(num+ 1)).addClass('active');
-
-);

@@ -1,8 +1,8 @@
-define([
-	'backbone'
-],
+define (require, exports, module) ->
+	Backbone = require('backbone')
 
-(Backbone) ->
 	class Release extends Backbone.Model
-		url: 'data/releases.json'
-);
+		url: 'api/releases'
+
+		initialize: (slug) ->
+			@url += "/#{slug}"

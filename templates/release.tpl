@@ -8,15 +8,15 @@
     })();
 </script>
 <div id="release-full">
-	<% if(release.img.length > 1) { %>
+	<% if(release.images.length > 1 && release.images[1] != null) { %>
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 	  <!-- Wrapper for slides -->
 	  <div class="carousel-inner">
 	    <div class="item active">
-	      <img src="img/covers/<%= release.img[0] %>"/>
+	      <img src="img/uploads/<%= release.images[0] %>"/>
 	    </div>
 	    <div class="item">
-	      <img src="img/covers/<%= release.img[1] %>">
+	      <img src="img/uploads/<%= release.images[1] %>">
 	    </div>
 	  </div>
 	  <!-- Controls -->
@@ -28,7 +28,7 @@
 	  </a>
 	</div>
 	<% } else {%>
-		<img src="img/covers/<%= release.img[0] %>" alt="">
+		<img src="img/uploads/<%= release.images[0] %>">
 	<% } %>
 	<div class="btn-group">
 	  <button type="button" class="btn inverse btn-download dropdown-toggle" data-toggle="dropdown">
@@ -40,15 +40,6 @@
 	  </ul>
 	</div>	
 	<div class="release-description">
-	
-		<p>
-			<div class="fb-like" 
-				data-layout="button" 
-				data-action="like" 
-				data-show-faces="false" 
-				data-share="true">
-			</div>	
-		</p>
 		<p>Year: <%= release.year %></p>
 		<p>Duration: <%= release.duration %></p>
 		<p>Tracklist: </p>

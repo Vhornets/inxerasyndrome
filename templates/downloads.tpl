@@ -33,7 +33,11 @@
 				  </button>
 				  <ul class="dropdown-menu per-page" role="menu">
 					<% for(var i = 1; i <= pages; i++) { %>
-						<li><a href="#0<%= i+1 %>"><%= i+1 %></a></li>
+						<li>
+							<a href="#<%= i+1 %>" data-perpage="<%= i+1 %>">
+								<%= i+1 %>
+							</a>
+						</li>
 					<% } %>				    
 				  </ul>
 				</div>			
@@ -50,18 +54,18 @@
 			<% _.each(releases, function(release) {%>
 			<div class="large-view">
 				<div class="col-xs-6 cover">
-					<a href="#/downloads/<%= release.name %>">
-						<img src="img/covers/<%= release.img[0] %>" class="col-xs-6" />
-						<% if(release.soundcloudPlaylist) {%>
+					<a href="#/downloads/<%= release.slug %>">
+						<img src="img/uploads/<%= release.images[0] %>" class="col-xs-6" />
+						<% if(release.playlists.soundcloud) {%>
 						<div class="cover-expand">
-							<a href="#/downloads/<%= release.name %>"><span class="glyphicon glyphicon-fullscreen"></span></a>
-							<a href="#/play/<%= release.soundcloudPlaylist %>">
+							<a href="#/downloads/<%= release.slug %>"><span class="glyphicon glyphicon-fullscreen"></span></a>
+							<a href="#/play/<%= release.playlists.soundcloud %>">
 							<span class="glyphicon glyphicon-play"></span>
 							</a>
 						</div> 
 						<% } else {%>
 						<div class="cover-expand one-control">
-							<a href="#/downloads/<%= release.name %>">
+							<a href="#/downloads/<%= release.slug %>">
 							<span class="glyphicon glyphicon-fullscreen"></span>
 							</a>
 						</div> 
@@ -77,7 +81,7 @@
 			<div class="compact-view">
 				<div class="row">
 					<div class="col-xs-5 cover">
-							<a href="#/downloads/<%= release.name %>"><img src="img/covers/<%= release.img[0] %>" title="<%= release.project %> - <%= release.title %> (<%= release.year %>)"  /></a>
+							<a href="#/downloads/<%= release.slug %>"><img src="img/uploads/<%= release.images[0] %>" title="<%= release.project %> - <%= release.title %> (<%= release.year %>)"  /></a>
 					</div>
 
 					<div class="col-xs-7">
@@ -133,12 +137,19 @@
 									<% } %>
 								</div>	
 							</div>
-							<% if(release.bandcampPlaylist) { %>
-							<div class="col-xs-12 bandcamp">
-								<iframe style="border: 0; width: 93%; height: 120px;" src="http://bandcamp.com/EmbeddedPlayer/album=<%= release.bandcampPlaylist %>/size=medium/bgcol=333333/linkcol=ffffff/artwork=false/transparent=true/" seamless>
-								</iframe>	
-							</div>
+							<div class="col-xs-12 player text-center">
+							<% if(release.playlists.bandcamp) { %>
+								<a href="#" 
+									data-player="<%=release.playlists.bandcamp%>"
+									data-bc="true" 
+									class="icon-play glyphicon glyphicon-play-circle"></a>	
+							<% } else {%>
+								<a href="#" 
+									data-player="<%=release.playlists.soundcloud%>"
+									data-sc="true"
+									class="icon-play glyphicon glyphicon-play-circle"></a>
 							<% } %>
+							</div>
 						</div>					
 					</div>
 				</div>
@@ -162,16 +173,4 @@
 				</div>
 			</div>
 		</div>
-</div>
-
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title"></h4>
-      </div>
-      <div class="modal-body"></div>
-    </div>
-  </div>
 </div>

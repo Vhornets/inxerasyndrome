@@ -1,0 +1,19 @@
+.container {
+	width: 550px;
+	background-color: #fff;
+	color: #333;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding-top: 10px;
+}
+
+body { background-color: #111; }
+
+.form-control, .btn { border-radius: 0; }
+
+.form-control {
+	background-color: #333333;
+	color: #fff;
+}
+
+img { width: 100%; }

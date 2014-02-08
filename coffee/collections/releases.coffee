@@ -1,11 +1,8 @@
-define([
-	'backbone',
-	'models/release'
-],
+define (require, exports, module) ->
+	Backbone = require('backbone')
+	Release = require('models/release')
 
-(Backbone, Release) ->
 	class Releases extends Backbone.Collection
 		model: Release
 
-		url: 'data/releases.json'
-);
+		url: 'api/releases'
