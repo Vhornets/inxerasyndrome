@@ -2,6 +2,7 @@ define (require, exports, module) ->
 	Backbone 		= require('backbone')
 	DownloadsView 	= require('views/downloads')
 	ReleaseView		= require('views/release')
+	Release 		= require('models/release')
 
 	class Router extends Backbone.Router
 		routes:
@@ -13,7 +14,7 @@ define (require, exports, module) ->
 			'*path': 'default'
 
 		initialize: () ->
-			@downloadsView = new DownloadsView()
+			@downloadsView = new DownloadsView(model: new Release)
 			Backbone.history.start()
 
 		showDownloads: () ->
@@ -22,7 +23,7 @@ define (require, exports, module) ->
 		showRelease: (slug) ->
 			return @downloadsView.render() if not slug
 
-			release = new ReleaseView()
+			release = new ReleaseView(model: new Release)
 			release.render(slug)
 
 		renderPage: (page) ->

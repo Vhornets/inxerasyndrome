@@ -3,14 +3,13 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 define(function(require, exports, module) {
-  var $, Backbone, BandcampPlayerTpl, DownloadsTpl, DownloadsView, ReleaseTpl, Releases, SoudcloudPlayerTpl, cookies, _;
+  var $, Backbone, BandcampPlayerTpl, DownloadsTpl, DownloadsView, Releases, SoudcloudPlayerTpl, cookies, _;
   $ = require('jquery');
   _ = require('underscore');
   Backbone = require('backbone');
   cookies = require('utils/cookies');
   Releases = require('collections/releases');
   DownloadsTpl = require('text!templates/downloads.tpl');
-  ReleaseTpl = require('text!templates/release.tpl');
   SoudcloudPlayerTpl = require('text!templates/soundcloud_player.tpl');
   BandcampPlayerTpl = require('text!templates/bandcamp_player.tpl');
   return DownloadsView = (function(_super) {
@@ -30,25 +29,24 @@ define(function(require, exports, module) {
 
     DownloadsView.prototype.initialize = function() {
       this.perPage = 2;
-      this.collection = new Releases();
       this.template = '';
       return this.mainEvents();
     };
 
     DownloadsView.prototype.render = function(page, filter) {
+      var releases;
       if (page == null) {
         page = 0;
       }
       if (filter == null) {
         filter = false;
       }
+      releases = new Releases();
       this.template = _.template(DownloadsTpl);
-      this.collection.url = 'api/releases';
-      return this.collection.fetch({
+      return releases.fetch({
         success: (function(_this) {
           return function(col, data) {
-            var releases;
-            data = _this.parseDbCells(data);
+            data = _this.model.parseDbCells(data);
             releases = filter && filter !== 'All' ? _.where(data, {
               project: filter
             }) : data;
@@ -115,12 +113,6 @@ define(function(require, exports, module) {
       return data = _.first(data, perPage);
     };
 
-    DownloadsView.prototype.modal = function(content) {
-      $('.modal-body').html(content.body);
-      $('.modal-title').html(content.title ? content.title : '');
-      return $('#myModal').modal('show');
-    };
-
     DownloadsView.prototype.mainEvents = function() {
       $(document).on('hide.bs.modal', '#myModal', function(e) {
         if (window.history.length > 2) {
@@ -137,14 +129,10 @@ define(function(require, exports, module) {
       });
     };
 
-    DownloadsView.prototype.parseDbCells = function(data) {
-      _.each(data, function(release) {
-        release.images = $.parseJSON(release.images);
-        release.links = $.parseJSON(release.links);
-        release.tracklist = $.parseJSON(release.tracklist);
-        return release.playlists = $.parseJSON(release.playlists);
-      });
-      return data;
+    DownloadsView.prototype.modal = function(content) {
+      $('.modal-body').html(content.body);
+      $('.modal-title').html(content.title ? content.title : '');
+      return $('#myModal').modal('show');
     };
 
     return DownloadsView;

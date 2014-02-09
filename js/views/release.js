@@ -26,7 +26,7 @@ define(function(require, exports, module) {
           return function(model, data) {
             var template;
             template = _.template(ReleaseTpl);
-            data = _this.parseDbCells(data);
+            data = _this.model.parseDbCells(data);
             _this.$el.find('.modal-body').html(template({
               release: data[0]
             }));
@@ -35,16 +35,6 @@ define(function(require, exports, module) {
           };
         })(this)
       });
-    };
-
-    ReleaseView.prototype.parseDbCells = function(data) {
-      _.each(data, function(release) {
-        release.images = $.parseJSON(release.images);
-        release.links = $.parseJSON(release.links);
-        release.tracklist = $.parseJSON(release.tracklist);
-        return release.playlists = $.parseJSON(release.playlists);
-      });
-      return data;
     };
 
     return ReleaseView;

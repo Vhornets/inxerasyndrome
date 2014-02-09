@@ -3,10 +3,11 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 define(function(require, exports, module) {
-  var Backbone, DownloadsView, ReleaseView, Router;
+  var Backbone, DownloadsView, Release, ReleaseView, Router;
   Backbone = require('backbone');
   DownloadsView = require('views/downloads');
   ReleaseView = require('views/release');
+  Release = require('models/release');
   return Router = (function(_super) {
     __extends(Router, _super);
 
@@ -24,7 +25,9 @@ define(function(require, exports, module) {
     };
 
     Router.prototype.initialize = function() {
-      this.downloadsView = new DownloadsView();
+      this.downloadsView = new DownloadsView({
+        model: new Release
+      });
       return Backbone.history.start();
     };
 
@@ -37,7 +40,9 @@ define(function(require, exports, module) {
       if (!slug) {
         return this.downloadsView.render();
       }
-      release = new ReleaseView();
+      release = new ReleaseView({
+        model: new Release
+      });
       return release.render(slug);
     };
 

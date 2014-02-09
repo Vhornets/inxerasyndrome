@@ -5,7 +5,6 @@ define (require, exports, module) ->
 	cookies 			= require('utils/cookies')
 	Releases 			= require('collections/releases')
 	DownloadsTpl 		= require('text!templates/downloads.tpl')
-	ReleaseTpl 			= require('text!templates/release.tpl')
 	SoudcloudPlayerTpl 	= require('text!templates/soundcloud_player.tpl')
 	BandcampPlayerTpl 	= require('text!templates/bandcamp_player.tpl')
 
@@ -19,18 +18,15 @@ define (require, exports, module) ->
 
 		initialize: () ->
 			@perPage = 2
-			@collection = new Releases()
 			@template = ''
-
 			@mainEvents()
 
 		render: (page = 0, filter = false) ->
+			releases = new Releases()
 			@template = _.template(DownloadsTpl)
 
-			@collection.url = 'api/releases'
-
-			@collection.fetch success: (col, data) =>
-				data = @parseDbCells(data)
+			releases.fetch success: (col, data) =>
+				data = @model.parseDbCells(data)
 				releases = if filter and filter != 'All' then _.where(data, {project: filter}) else data
 
 				@$el.html(@template(
@@ -87,11 +83,6 @@ define (require, exports, module) ->
 
 			return data = _.first(data, perPage)
 
-		modal: (content) ->
-			$('.modal-body').html(content.body)
-			$('.modal-title').html(if content.title then content.title else '')
-			$('#myModal').modal('show')
-
 		mainEvents: () ->
 			$(document).on 'hide.bs.modal', '#myModal', (e) ->
 				if window.history.length > 2
@@ -105,14 +96,9 @@ define (require, exports, module) ->
 					$(cookies.get('cur-view-hide')).hide()
 					$(cookies.get('cur-view-show')).show()
 				.on 'page:active', (e, num) ->
-					$('.page-num-'+(num+ 1)).addClass('active');
-		# В таблице некоторые поля хранят значения в формате JSON
-		# Метод парсит эти поля
-		parseDbCells: (data) ->
-			_.each data, (release) ->
-				release.images = $.parseJSON(release.images)
-				release.links = $.parseJSON(release.links)
-				release.tracklist = $.parseJSON(release.tracklist)
-				release.playlists = $.parseJSON(release.playlists)
+					$('.page-num-'+(num+ 1)).addClass('active')
 
-			return data
+		modal: (content) ->
+			$('.modal-body').html(content.body)
+			$('.modal-title').html(if content.title then content.title else '')
+			$('#myModal').modal('show')		
