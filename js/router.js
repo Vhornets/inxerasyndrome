@@ -3,9 +3,10 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 define(function(require, exports, module) {
-  var Backbone, DownloadsView, Router;
+  var Backbone, DownloadsView, ReleaseView, Router;
   Backbone = require('backbone');
   DownloadsView = require('views/downloads');
+  ReleaseView = require('views/release');
   return Router = (function(_super) {
     __extends(Router, _super);
 
@@ -23,35 +24,37 @@ define(function(require, exports, module) {
     };
 
     Router.prototype.initialize = function() {
-      this.view = new DownloadsView();
+      this.downloadsView = new DownloadsView();
       return Backbone.history.start();
     };
 
     Router.prototype.showDownloads = function() {
-      return this.view.render();
+      return this.downloadsView.render();
     };
 
     Router.prototype.showRelease = function(slug) {
+      var release;
       if (!slug) {
-        return this.view.render();
+        return this.downloadsView.render();
       }
-      return this.view.showRelease(slug);
+      release = new ReleaseView();
+      return release.render(slug);
     };
 
     Router.prototype.renderPage = function(page) {
-      return this.view.render(page - 1);
+      return this.downloadsView.render(page - 1);
     };
 
     Router.prototype.showPlayer = function(playlist) {
-      return this.view.player(playlist);
+      return this.downloadsView.player(playlist);
     };
 
     Router.prototype.filterProjects = function(filter) {
-      return this.view.render(0, filter);
+      return this.downloadsView.render(0, filter);
     };
 
     Router.prototype["default"] = function(path) {
-      return this.view.render();
+      return this.downloadsView.render();
     };
 
     return Router;

@@ -3,11 +3,12 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 define(function(require, exports, module) {
-  var $, Backbone, Release, ReleaseView, _;
+  var $, Backbone, Release, ReleaseTpl, ReleaseView, _;
   $ = require('jquery');
   _ = require('underscore');
   Backbone = require('backbone');
   Release = require('models/release');
+  ReleaseTpl = require('text!templates/release.tpl');
   return ReleaseView = (function(_super) {
     __extends(ReleaseView, _super);
 
@@ -15,22 +16,38 @@ define(function(require, exports, module) {
       return ReleaseView.__super__.constructor.apply(this, arguments);
     }
 
+    ReleaseView.prototype.el = '.modal-content';
+
+    ReleaseView.prototype.render = function(slug) {
+      var release;
+      release = new Release(slug);
+      return release.fetch({
+        success: (function(_this) {
+          return function(model, data) {
+            var template;
+            template = _.template(ReleaseTpl);
+            data = _this.parseDbCells(data);
+            _this.$el.find('.modal-body').html(template({
+              release: data[0]
+            }));
+            _this.$el.find('.modal-title').html("" + data[0].project + " - " + data[0].title + " (" + data[0].year + ")");
+            return $('#myModal').modal('show');
+          };
+        })(this)
+      });
+    };
+
+    ReleaseView.prototype.parseDbCells = function(data) {
+      _.each(data, function(release) {
+        release.images = $.parseJSON(release.images);
+        release.links = $.parseJSON(release.links);
+        release.tracklist = $.parseJSON(release.tracklist);
+        return release.playlists = $.parseJSON(release.playlists);
+      });
+      return data;
+    };
+
     return ReleaseView;
 
-  })(Backbone.View(function() {
-    return {
-      el: '.modal-content',
-      render: function(slug) {
-        var release;
-        release = new Release(slug);
-        return release.fetch({
-          success: (function(_this) {
-            return function(model, data) {
-              return console.log(model);
-            };
-          })(this)
-        });
-      }
-    };
-  }));
+  })(Backbone.View);
 });
