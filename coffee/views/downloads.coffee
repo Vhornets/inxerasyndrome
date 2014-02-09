@@ -45,19 +45,6 @@ define (require, exports, module) ->
 				@$el
 					.trigger('view:ready')
 					.trigger('page:active', page)
-
-		showRelease: (slug) ->
-			@collection.url = "api/releases/#{slug}"
-
-			@collection.fetch success: (model, data) =>
-				data = @parseDbCells(data)
-				@template = _.template(ReleaseTpl)
-				#@render()
-
-				@modal
-					title: "#{data[0].project} - #{data[0].title} (#{data[0].year})"
-					body: @template(release: data[0])
-
 						
 		player: (playlist) ->
 			@template = _.template(SoudcloudPlayerTpl)

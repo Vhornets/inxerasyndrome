@@ -67,24 +67,6 @@ define(function(require, exports, module) {
       });
     };
 
-    DownloadsView.prototype.showRelease = function(slug) {
-      this.collection.url = "api/releases/" + slug;
-      return this.collection.fetch({
-        success: (function(_this) {
-          return function(model, data) {
-            data = _this.parseDbCells(data);
-            _this.template = _.template(ReleaseTpl);
-            return _this.modal({
-              title: "" + data[0].project + " - " + data[0].title + " (" + data[0].year + ")",
-              body: _this.template({
-                release: data[0]
-              })
-            });
-          };
-        })(this)
-      });
-    };
-
     DownloadsView.prototype.player = function(playlist) {
       this.template = _.template(SoudcloudPlayerTpl);
       return this.modal({
