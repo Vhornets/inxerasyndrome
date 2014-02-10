@@ -3,12 +3,13 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 define(function(require, exports, module) {
-  var $, Backbone, Release, ReleaseTpl, ReleaseView, _;
+  var $, Backbone, Release, ReleaseTpl, ReleaseView, SoudcloudPlayerTpl, _;
   $ = require('jquery');
   _ = require('underscore');
   Backbone = require('backbone');
   Release = require('models/release');
   ReleaseTpl = require('text!templates/release.tpl');
+  SoudcloudPlayerTpl = require('text!templates/soundcloud_player.tpl');
   return ReleaseView = (function(_super) {
     __extends(ReleaseView, _super);
 
@@ -27,14 +28,33 @@ define(function(require, exports, module) {
             var template;
             template = _.template(ReleaseTpl);
             data = _this.model.parseDbCells(data);
-            _this.$el.find('.modal-body').html(template({
-              release: data[0]
-            }));
-            _this.$el.find('.modal-title').html("" + data[0].project + " - " + data[0].title + " (" + data[0].year + ")");
-            return $('#myModal').modal('show');
+            return _this.modal({
+              body: template({
+                release: data[0]
+              }),
+              title: "" + data[0].project + " - " + data[0].title + " (" + data[0].year + ")"
+            });
           };
         })(this)
       });
+    };
+
+    ReleaseView.prototype.player = function(playlist) {
+      var template;
+      template = _.template(SoudcloudPlayerTpl);
+      return this.modal({
+        body: template({
+          playlist: playlist,
+          width: '100%',
+          height: '450'
+        })
+      });
+    };
+
+    ReleaseView.prototype.modal = function(content) {
+      this.$el.find('.modal-body').html(content.body);
+      this.$el.find('.modal-title').html(content.title ? content.title : '');
+      return $('#myModal').modal('show');
     };
 
     return ReleaseView;

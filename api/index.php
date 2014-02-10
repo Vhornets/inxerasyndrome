@@ -42,13 +42,13 @@ $app->get('/logout', function() use($app) {
 	$app->redirect('/api/login');
 });
 
-$app->get('/releases', function () {
+$app->get('/releases', 'json_response', function() {
 	$releases = Release::orderBy('id', 'desc')->get();
 
 	echo $releases->toJson();
 });
 
-$app->get('/releases/:slug', function($slug) {
+$app->get('/releases/:slug', 'json_response', function($slug) {
 	$release = Release::where('slug', '=', $slug)->get();
 
 	echo $release->toJson();

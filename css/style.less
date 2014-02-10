@@ -63,7 +63,12 @@ ol {
 
 .content {
 	background-color: #111;
+	min-height: 100px;
     .bordered(#444, #333, #000, #333);
+
+    #loader {
+		padding: 40px;
+    }
 
 	.controls {
 		padding-top: 5px;
@@ -177,7 +182,7 @@ ol {
 		}
 
 		.icon-play { 
-			font-size: 84px; 
+			font-size: 54px; 
 			padding-top: 30px;
 			color: #fff;
 			.transition(0.2s, ease-out);
@@ -256,6 +261,7 @@ ol {
 
 	.btn-download {
 		.nice-btn;
+		margin-top: 5px;
 	}
 
 	.btn-filter {

@@ -14,22 +14,22 @@ define (require, exports, module) ->
 		events:
 			'click .controls>a': 'toggleView'
 			'click .per-page>li>a': 'changePerPage'
-			'click .icon-play': 'showPlayer'
 
 		initialize: () ->
 			@perPage = 2
-			@template = ''
 			@mainEvents()
+			@rendered = false
 
 		render: (page = 0, filter = false) ->
 			releases = new Releases()
-			@template = _.template(DownloadsTpl)
+			template = _.template(DownloadsTpl)
 
 			releases.fetch success: (col, data) =>
 				data = @model.parseDbCells(data)
 				releases = if filter and filter != 'All' then _.where(data, {project: filter}) else data
+				@rendered = true
 
-				@$el.html(@template(
+				@$el.html(template(
 					releases: @paginate(releases, page, @perPage)
 					pages: if releases.length / @perPage < 1.25 then 1 else Math.floor(releases.length / @perPage) + 1
 					# Возвращает уникальные значения по полю projects
@@ -38,14 +38,7 @@ define (require, exports, module) ->
 					perPage: @perPage
 				))
 
-				@$el
-					.trigger('view:ready')
-					.trigger('page:active', page)
-						
-		player: (playlist) ->
-			@template = _.template(SoudcloudPlayerTpl)
-			@modal
-				body: @template(playlist: playlist, width: '100%', height: '450')
+				@$el.trigger('view:ready').trigger('page:active', page)
 
 		toggleView: (e) ->
 			e.preventDefault()
@@ -67,17 +60,6 @@ define (require, exports, module) ->
 			@perPage = $(e.currentTarget).attr('data-perpage')
 			@render()
 
-		showPlayer: (e) ->
-			e.preventDefault()
-
-			$playerContainer = $(e.currentTarget).parent()
-
-			playlist = $(e.currentTarget).attr('data-player')
-
-			playerTpl = if $(e.currentTarget).attr('data-sc') then _.template(SoudcloudPlayerTpl) else _.template(BandcampPlayerTpl) 
-
-			$playerContainer.html(playerTpl(playlist: playlist, width: '93%', height: '120'))
-
 		paginate: (data, page, perPage) ->
 			data = _.rest(data, perPage * page)
 
@@ -89,16 +71,9 @@ define (require, exports, module) ->
 					window.history.back() 
 				else
 					window.location.hash = ''
-					#window.history.go(0)
 
 			@$el
 				.on 'view:ready', (e) ->
 					$(cookies.get('cur-view-hide')).hide()
 					$(cookies.get('cur-view-show')).show()
-				.on 'page:active', (e, num) ->
-					$('.page-num-'+(num+ 1)).addClass('active')
-
-		modal: (content) ->
-			$('.modal-body').html(content.body)
-			$('.modal-title').html(if content.title then content.title else '')
-			$('#myModal').modal('show')		
+				.on 'page:active', (e, num) -> $('.page-num-'+(num+ 1)).addClass('active')

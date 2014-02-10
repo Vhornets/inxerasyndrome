@@ -108,7 +108,15 @@
 										</a>
 								    </li>
 								  </ul>
-								</div>										
+								</div>
+								<br>
+								<div class="btn-group">
+									<a 
+										href="#/play/<%= release.playlists.soundcloud %>"
+										class="btn inverse btn-download">
+										<span class="glyphicon glyphicon-play"></span> Listen
+									</a>
+								</div>
 							</div>
 							<div class="col-xs-6 text-left">
 								<p>Tracklist: </p>
@@ -136,19 +144,6 @@
 									</a>
 									<% } %>
 								</div>	
-							</div>
-							<div class="col-xs-12 player text-center">
-							<% if(release.playlists.bandcamp) { %>
-								<a href="#" 
-									data-player="<%=release.playlists.bandcamp%>"
-									data-bc="true" 
-									class="icon-play glyphicon glyphicon-play-circle"></a>	
-							<% } else {%>
-								<a href="#" 
-									data-player="<%=release.playlists.soundcloud%>"
-									data-sc="true"
-									class="icon-play glyphicon glyphicon-play-circle"></a>
-							<% } %>
 							</div>
 						</div>					
 					</div>

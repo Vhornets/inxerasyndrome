@@ -28,6 +28,9 @@ define(function(require, exports, module) {
       this.downloadsView = new DownloadsView({
         model: new Release
       });
+      this.releaseView = new ReleaseView({
+        model: new Release
+      });
       return Backbone.history.start();
     };
 
@@ -36,14 +39,15 @@ define(function(require, exports, module) {
     };
 
     Router.prototype.showRelease = function(slug) {
-      var release;
       if (!slug) {
         return this.downloadsView.render();
       }
-      release = new ReleaseView({
-        model: new Release
-      });
-      return release.render(slug);
+      if (this.downloadsView.rendered) {
+        return this.releaseView.render(slug);
+      } else {
+        this.downloadsView.render();
+        return this.releaseView.render(slug);
+      }
     };
 
     Router.prototype.renderPage = function(page) {
@@ -51,7 +55,12 @@ define(function(require, exports, module) {
     };
 
     Router.prototype.showPlayer = function(playlist) {
-      return this.downloadsView.player(playlist);
+      if (this.downloadsView.rendered) {
+        return this.releaseView.player(playlist);
+      } else {
+        this.releaseView.player(playlist);
+        return this.downloadsView.render();
+      }
     };
 
     Router.prototype.filterProjects = function(filter) {

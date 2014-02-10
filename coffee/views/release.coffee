@@ -1,9 +1,10 @@
 define (require, exports, module) ->
-	$			= require('jquery')
-	_			= require('underscore')
-	Backbone 	= require('backbone')
-	Release 	= require('models/release')
-	ReleaseTpl 	= require('text!templates/release.tpl')
+	$					= require('jquery')
+	_					= require('underscore')
+	Backbone 			= require('backbone')
+	Release 			= require('models/release')
+	ReleaseTpl 			= require('text!templates/release.tpl')
+	SoudcloudPlayerTpl 	= require('text!templates/soundcloud_player.tpl')
 
 	class ReleaseView extends Backbone.View
 		el: '.modal-content'
@@ -14,6 +15,17 @@ define (require, exports, module) ->
 			release.fetch success: (model, data) =>
 				template = _.template(ReleaseTpl)
 				data = @model.parseDbCells(data)
-				@$el.find('.modal-body').html(template(release: data[0]))
-				@$el.find('.modal-title').html("#{data[0].project} - #{data[0].title} (#{data[0].year})")
-				$('#myModal').modal('show')
+
+				@modal
+					body: template(release: data[0])
+					title: "#{data[0].project} - #{data[0].title} (#{data[0].year})"
+						
+		player: (playlist) ->
+			template = _.template(SoudcloudPlayerTpl)
+			@modal
+				body: template(playlist: playlist, width: '100%', height: '450')
+
+		modal: (content) ->
+			@$el.find('.modal-body').html(content.body)
+			@$el.find('.modal-title').html(if content.title then content.title else '')
+			$('#myModal').modal('show')		

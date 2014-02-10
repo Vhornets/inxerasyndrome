@@ -1,5 +1,10 @@
 <?php
 
+function json_response() {
+    $app = \Slim\Slim::getInstance();
+    $app->response->headers->set('Content-Type', 'application/json');
+}
+
 function auth() {
     $app = \Slim\Slim::getInstance();
     

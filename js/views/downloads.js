@@ -23,18 +23,17 @@ define(function(require, exports, module) {
 
     DownloadsView.prototype.events = {
       'click .controls>a': 'toggleView',
-      'click .per-page>li>a': 'changePerPage',
-      'click .icon-play': 'showPlayer'
+      'click .per-page>li>a': 'changePerPage'
     };
 
     DownloadsView.prototype.initialize = function() {
       this.perPage = 2;
-      this.template = '';
-      return this.mainEvents();
+      this.mainEvents();
+      return this.rendered = false;
     };
 
     DownloadsView.prototype.render = function(page, filter) {
-      var releases;
+      var releases, template;
       if (page == null) {
         page = 0;
       }
@@ -42,7 +41,7 @@ define(function(require, exports, module) {
         filter = false;
       }
       releases = new Releases();
-      this.template = _.template(DownloadsTpl);
+      template = _.template(DownloadsTpl);
       return releases.fetch({
         success: (function(_this) {
           return function(col, data) {
@@ -50,7 +49,8 @@ define(function(require, exports, module) {
             releases = filter && filter !== 'All' ? _.where(data, {
               project: filter
             }) : data;
-            _this.$el.html(_this.template({
+            _this.rendered = true;
+            _this.$el.html(template({
               releases: _this.paginate(releases, page, _this.perPage),
               pages: releases.length / _this.perPage < 1.25 ? 1 : Math.floor(releases.length / _this.perPage) + 1,
               projects: _.uniq(data, true, function(el) {
@@ -62,17 +62,6 @@ define(function(require, exports, module) {
             return _this.$el.trigger('view:ready').trigger('page:active', page);
           };
         })(this)
-      });
-    };
-
-    DownloadsView.prototype.player = function(playlist) {
-      this.template = _.template(SoudcloudPlayerTpl);
-      return this.modal({
-        body: this.template({
-          playlist: playlist,
-          width: '100%',
-          height: '450'
-        })
       });
     };
 
@@ -95,19 +84,6 @@ define(function(require, exports, module) {
       return this.render();
     };
 
-    DownloadsView.prototype.showPlayer = function(e) {
-      var $playerContainer, playerTpl, playlist;
-      e.preventDefault();
-      $playerContainer = $(e.currentTarget).parent();
-      playlist = $(e.currentTarget).attr('data-player');
-      playerTpl = $(e.currentTarget).attr('data-sc') ? _.template(SoudcloudPlayerTpl) : _.template(BandcampPlayerTpl);
-      return $playerContainer.html(playerTpl({
-        playlist: playlist,
-        width: '93%',
-        height: '120'
-      }));
-    };
-
     DownloadsView.prototype.paginate = function(data, page, perPage) {
       data = _.rest(data, perPage * page);
       return data = _.first(data, perPage);
@@ -127,12 +103,6 @@ define(function(require, exports, module) {
       }).on('page:active', function(e, num) {
         return $('.page-num-' + (num + 1)).addClass('active');
       });
-    };
-
-    DownloadsView.prototype.modal = function(content) {
-      $('.modal-body').html(content.body);
-      $('.modal-title').html(content.title ? content.title : '');
-      return $('#myModal').modal('show');
     };
 
     return DownloadsView;

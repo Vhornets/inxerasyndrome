@@ -15,22 +15,30 @@ define (require, exports, module) ->
 
 		initialize: () ->
 			@downloadsView = new DownloadsView(model: new Release)
+			@releaseView = new ReleaseView(model: new Release)
 			Backbone.history.start()
 
 		showDownloads: () ->
-			@downloadsView.render()			
+			@downloadsView.render()
 
 		showRelease: (slug) ->
 			return @downloadsView.render() if not slug
 
-			release = new ReleaseView(model: new Release)
-			release.render(slug)
+			if @downloadsView.rendered
+				@releaseView.render(slug)
+			else
+				@downloadsView.render()
+				@releaseView.render(slug)
 
 		renderPage: (page) ->
 			@downloadsView.render(page - 1)
 
 		showPlayer: (playlist) ->
-			@downloadsView.player(playlist)
+			if @downloadsView.rendered
+				@releaseView.player(playlist)
+			else
+				@releaseView.player(playlist)
+				@downloadsView.render()
 
 		filterProjects: (filter) ->
 			@downloadsView.render(0, filter)
