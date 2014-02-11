@@ -43,11 +43,7 @@
 		<p>Year: <%= release.year %></p>
 		<p>Duration: <%= release.duration %></p>
 		<p>Tracklist: </p>
-		<ol>
-			<% _.each(release.tracklist, function(track, i) {%>
-				<li><%= track %></li>
-			<% }); %>
-		</ol>
+		<%= release.tracklist %>
 		<h3>Say something: </h3>
 	</div>
     <div id="disqus_thread"></div>	

@@ -8,6 +8,8 @@
 	<link href="/css/admin/releases.css" rel="stylesheet">
 	<script src="/js/vendor/jquery.min.js"></script>
 	<script src="/js/vendor/bootstrap.min.js"></script>
+	<script src="/js/admin/tinymce/tinymce.min.js"></script>
+	<script src="/js/admin/main.js"></script>
 </head>
 <body>
 	<div class="container">

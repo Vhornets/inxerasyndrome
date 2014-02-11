@@ -55,7 +55,7 @@
 			<div class="large-view">
 				<div class="col-xs-6 cover">
 					<a href="#/downloads/<%= release.slug %>">
-						<img src="img/uploads/<%= release.images[0] %>" class="col-xs-6" />
+						<img src="img/uploads/<%= release.images[0] %>" class="col-xs-6" title="<%= release.project %> - <%= release.title %> (<%= release.year %>)"/>
 						<% if(release.playlists.soundcloud) {%>
 						<div class="cover-expand">
 							<a href="#/downloads/<%= release.slug %>"><span class="glyphicon glyphicon-fullscreen"></span></a>
@@ -81,13 +81,13 @@
 			<div class="compact-view">
 				<div class="row">
 					<div class="col-xs-5 cover">
-							<a href="#/downloads/<%= release.slug %>"><img src="img/uploads/<%= release.images[0] %>" title="<%= release.project %> - <%= release.title %> (<%= release.year %>)"  /></a>
+							<a href="#/downloads/<%= release.slug %>">
+							<img src="img/uploads/<%= release.images[0] %>" title="<%= release.project %> - <%= release.title %> (<%= release.year %>)"  />
+							</a>
 					</div>
 
 					<div class="col-xs-7">
-						<h3>
-							<%= release.project %> - <%= release.title %>
-						</h3>
+						<h3><%= release.project %> - <%= release.title %></h3>
 						<div class="row">
 							<div class="col-xs-6">
 								<p>Year: <%= release.year %></p>
@@ -120,11 +120,7 @@
 							</div>
 							<div class="col-xs-6 text-left">
 								<p>Tracklist: </p>
-								<ol class="tracklist">
-									<% _.each(release.tracklist, function(track, i) {%>
-										<li><%= track %></li>
-									<% }); %>
-								</ol>
+								<%= release.tracklist %>
 
 								<div class="socials">
 									<% var link = release.project.toLowerCase().replace(' ', '') %>

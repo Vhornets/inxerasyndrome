@@ -1,7 +1,7 @@
 ({
-    baseUrl: './js',
+    baseUrl: '../js',
     name: 'main',
-    out: 'js/dist/main.js',
+    out: 'dist/main.js',
     removeCombined: true,
     include: ["requireLib"],
     paths: {

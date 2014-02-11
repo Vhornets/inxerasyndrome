@@ -27,9 +27,7 @@
 
 	<div class="form-group">
 		<label for="tracklist">Tracklist</label>
-		<textarea rows="10" class="form-control input-sm" placeholder="Tracklist" name="tracklist"><?php foreach ($release->tracklist as $track) {
-			echo $track . "\n";
-		} ?></textarea>
+		<textarea rows="10" class="form-control input-sm" name="tracklist"><?php echo $release->tracklist; ?></textarea>
 	</div>
 
 	<div class="form-group">

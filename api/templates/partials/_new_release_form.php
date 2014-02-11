@@ -20,15 +20,9 @@
 	</div>
 
 	<div class="form-group">
-		<textarea rows="10" class="form-control input-sm" placeholder="Tracklist" name="tracklist"></textarea>
+		<label for="tracklist">Tracklist</label>
+		<textarea rows="10" class="form-control input-sm" name="tracklist"></textarea>
 	</div>
-
-<!-- 	<div class="form-group">
-		<p class="help-block">Front cover</p>
-		<input type="file" name="images_front">
-		<p class="help-block">Back cover</p>
-		<input type="file" name="images_back">
-	</div> -->
 
 	<div class="form-group">
 		<label for="covers">Cover</label>
@@ -41,17 +35,24 @@
 		</select>
 	</div>
 
-	<div class="form-group">
-		<input type="text" class="form-control input-sm" placeholder="Link (mp3)" name="links[mp3]">
-		<hr>
-		<input type="text" class="form-control input-sm" placeholder="Link (FLAC)" name="links[flac]">
-		<hr>
+	<div class="form-group row">
+		<label class="col-xs-12">Download links</label>
+		<div class="col-xs-6">
+			<input type="text" class="form-control input-sm" placeholder="mp3" name="links[mp3]">
+		</div>
+		<div class="col-xs-6">
+			<input type="text" class="form-control input-sm" placeholder="FLAC" name="links[flac]">
+		</div>
 	</div>
-
-	<div class="form-group">
-		<input type="text" class="form-control input-sm" placeholder="Playlist (Soundcloud)" name="playlist[soundcloud]">
-		<hr>
-		<input type="text" class="form-control input-sm" placeholder="Playlist (Bandcamp)" name="playlist[bandcamp]">
+	<hr>
+	<div class="form-group row">
+		<label class="col-xs-12">Playlists</label>
+		<div class="col-xs-6">
+			<input type="text" class="form-control input-sm col-xs-6" placeholder="Soundcloud" name="playlist[soundcloud]">
+		</div>
+		<div class="col-xs-6">
+			<input type="text" class="form-control input-sm col-xs-6" placeholder="Bandcamp" name="playlist[bandcamp]">
+		</div>
 	</div>
 
 	<div class="form-group">

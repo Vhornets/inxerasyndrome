@@ -69,7 +69,6 @@ function makeReleaseArr($params) {
         'soundcloud' => $params['playlist']['soundcloud'],
         'bandcamp' => $params['playlist']['bandcamp']
     ];
-    $tracklist = explode("\n", $params['tracklist']);
 
     $release = [
         'project' => $params['project'],
@@ -77,7 +76,7 @@ function makeReleaseArr($params) {
         'slug' => $params['slug'],
         'year' => $params['year'],
         'duration' => $params['duration'],
-        'tracklist' => json_encode($tracklist),
+        'tracklist' => $params['tracklist'],
         'links' => json_encode($links),
         'playlists' => json_encode($playlists),
         'images' => json_encode($params['covers'])

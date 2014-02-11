@@ -250,7 +250,7 @@ ol {
 .content .compact-view .cover {
   padding-left: 30px;
 }
-.content .compact-view .tracklist {
+.content .compact-view ol {
   font-size: 10px;
 }
 .content .compact-view .player {
