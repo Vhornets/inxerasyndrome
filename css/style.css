@@ -327,16 +327,6 @@ ol {
   border-radius: 180px !important;
   border: 1px solid #232323;
 }
-.content .socials {
-  padding: 10px 0 0 0;
-}
-.content .socials a {
-  text-decoration: none;
-  padding: 0;
-}
-.content .socials img {
-  width: 30px;
-}
 .content .btn-download {
   background-color: #333333;
   border-top: solid 1px #111111;
@@ -426,6 +416,17 @@ ol {
   padding: 0 0 0 10px;
 }
 .footer .cc img {
+  width: 30px;
+}
+.socials p {
+  margin: 0;
+  padding-top: 0;
+}
+.socials a {
+  text-decoration: none;
+  padding: 0;
+}
+.socials img {
   width: 30px;
 }
 .clear-padding-left {

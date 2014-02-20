@@ -3,10 +3,11 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 define(function(require, exports, module) {
-  var Backbone, DownloadsView, Release, ReleaseView, Router;
+  var Backbone, Contact, DownloadsView, Release, ReleaseView, Router;
   Backbone = require('backbone');
   DownloadsView = require('views/downloads');
   ReleaseView = require('views/release');
+  Contact = require('views/contact');
   Release = require('models/release');
   return Router = (function(_super) {
     __extends(Router, _super);
@@ -21,6 +22,7 @@ define(function(require, exports, module) {
       'page/:page': 'renderPage',
       'play/*playlist': 'showPlayer',
       'filter/*filter': 'filterProjects',
+      'contact': 'showContact',
       '*path': 'default'
     };
 
@@ -65,6 +67,12 @@ define(function(require, exports, module) {
 
     Router.prototype.filterProjects = function(filter) {
       return this.downloadsView.render(0, filter);
+    };
+
+    Router.prototype.showContact = function() {
+      var contact;
+      contact = new Contact();
+      return contact.render();
     };
 
     Router.prototype["default"] = function(path) {

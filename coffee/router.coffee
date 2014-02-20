@@ -2,6 +2,7 @@ define (require, exports, module) ->
 	Backbone 		= require('backbone')
 	DownloadsView 	= require('views/downloads')
 	ReleaseView		= require('views/release')
+	Contact 		= require('views/contact')
 	Release 		= require('models/release')
 
 	class Router extends Backbone.Router
@@ -11,6 +12,7 @@ define (require, exports, module) ->
 			'page/:page': 'renderPage'
 			'play/*playlist': 'showPlayer'
 			'filter/*filter': 'filterProjects'
+			'contact': 'showContact'
 			'*path': 'default'
 
 		initialize: () ->
@@ -42,6 +44,10 @@ define (require, exports, module) ->
 
 		filterProjects: (filter) ->
 			@downloadsView.render(0, filter)
+
+		showContact: () ->
+			contact = new Contact()
+			contact.render()
 
 		default: (path)  ->
 			@downloadsView.render()

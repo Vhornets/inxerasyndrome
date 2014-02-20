@@ -28,16 +28,17 @@
 			<img class="col-xs-12" src="img/header.jpg" />
 		</div>
 
- 		<div class="row main-menu">
-<!-- 			<div class="col-xs-12">
+<!--  		<div class="row main-menu">
+			<div class="col-xs-12">
 				<ul>
-					<li class="active"><a href="/">Downloads</a></li>
-					<li><a href="">Link 2</a></li>
-					<li><a href="">Link 3</a></li>
-					<li><a href="">Link 4</a></li>
+					<li class="active"><a href="/#downloads">Download</a></li>
+					<li><a href="#/listen">Listen</a></li>
+					<li><a href="#/look">Look</a></li>
+					<li><a href="#/read">Read</a></li>
+					<li><a href="#/contact">Contact</a></li>
 				</ul>
-			</div> -->
-		</div>
+			</div>
+		</div> -->
 
 		<div class="row content">
 			<div class="col-xs-12 text-center" id="loader">
@@ -52,12 +53,25 @@
 
 			<div class="col-xs-7 text-right cc">
 				<p>
-				<img src="img/cc/cc.png" />
-				<img src="img/cc/cc-attrib.png" />
-				<img src="img/cc/cc-share.png" />
-				<img src="img/cc/cc-noncom.png" />
+					<img src="img/cc/cc.png" />
+					<img src="img/cc/cc-attrib.png" />
+					<img src="img/cc/cc-share.png" />
+					<img src="img/cc/cc-noncom.png" />
 				</p>
 			</div>
+
+			<div class="col-xs-12 text-left socials">
+				<p> Share: 
+					<a href="http://www.facebook.com/sharer.php?u=http://inxerasyndrome.com/" onclick="javascript:window.open(this.href,
+'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+						<img src="img/socials/fb-white.png" />
+					</a>
+					<a href="https://plus.google.com/share?url=inxerasyndrome.com/" onclick="javascript:window.open(this.href,
+'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+						<img src="img/socials/gp-white.png" />
+					</a>
+				</p>
+			</div>	
 		</div>
 
 	</div>	
@@ -75,7 +89,7 @@
 	  </div>
 	</div>
 	
-	<script data-main="js/dist/main" src="js/dist/main.js"></script>
+	<script data-main="js/main" src="js/vendor/require.min.js"></script>
 	<script src="js/vendor/ga.js"></script>
 </body>
 </html>

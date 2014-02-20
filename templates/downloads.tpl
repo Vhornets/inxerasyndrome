@@ -147,21 +147,4 @@
 			</div>
 			<% }); %>
 		</div>
-
-		<div class="row">
-			<div class="col-xs-12 text-left">
-				<div class="socials">
-					<p> Share: 
-						<a href="http://www.facebook.com/sharer.php?u=http://inxerasyndrome.com/" onclick="javascript:window.open(this.href,
-  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-							<img src="img/socials/fb-white.png" />
-						</a>
-						<a href="https://plus.google.com/share?url=inxerasyndrome.com/" onclick="javascript:window.open(this.href,
-  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-							<img src="img/socials/gp-white.png" />
-						</a>
-					</p>
-				</div>
-			</div>
-		</div>
 </div>
